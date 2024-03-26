@@ -1,11 +1,11 @@
 "use client";
 // "use client" is not required in this context, as Next.js automatically determines server vs client rendering
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
 
 // Import icons from 'react-icons'
-import { BsFillStopFill, BsFillPlayFill } from "react-icons/bs";
+import { BsFillPauseFill, BsFillPlayFill } from "react-icons/bs";
 
 interface PlayerProps {
 	url: string; // URL of the audio file
@@ -14,6 +14,7 @@ interface PlayerProps {
 const Player: React.FC<PlayerProps> = ({ url }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
+	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
 		// Create WaveSurfer instance
@@ -41,6 +42,16 @@ const Player: React.FC<PlayerProps> = ({ url }) => {
 				console.error("WaveSurfer error:", error);
 			});
 
+			// Add play event listener
+			wavesurferRef.current.on("play", () => {
+				setIsPlaying(true);
+			});
+
+			// Add pause event listener
+			wavesurferRef.current.on("pause", () => {
+				setIsPlaying(false);
+			});
+
 			// Clean up on component unmount
 			return () => wavesurferInstance.destroy();
 		}
@@ -48,8 +59,8 @@ const Player: React.FC<PlayerProps> = ({ url }) => {
 
 	const handlePlayPause = () => {
 		if (wavesurferRef.current) {
-			console.log("play");
 			wavesurferRef.current.playPause();
+			setIsPlaying(!isPlaying); // Toggle play state
 		}
 	};
 
@@ -58,11 +69,13 @@ const Player: React.FC<PlayerProps> = ({ url }) => {
 			<div className="flex justify-center items-center pt-16">
 				<p className="text-white my-2">Track Title</p>
 				<div className="waveform-container">
-					<BsFillPlayFill
-						onClick={handlePlayPause}
-						className="text-blue-400 cursor-pointer hover:text-blue-500 focus:outline-none"
-						size={40}
-					/>
+					<button onClick={handlePlayPause} className="">
+						{isPlaying ? (
+							<BsFillPauseFill size={40} />
+						) : (
+							<BsFillPlayFill size={40} />
+						)}
+					</button>
 					<div ref={waveformRef} className="waveform-ref-style" />
 				</div>
 			</div>

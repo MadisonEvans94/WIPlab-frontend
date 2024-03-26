@@ -102,7 +102,7 @@ body {
 .waveform-ref-style {
 	flex-grow: 1; /* Allow the waveform to grow and fill the remaining space */
 	height: 80px; /* Set a fixed height for the waveform */
-	background-color: #f8fafc; /* Set a light background color */
+
 	border-radius: 4px; /* Slightly round the corners */
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
 		0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
