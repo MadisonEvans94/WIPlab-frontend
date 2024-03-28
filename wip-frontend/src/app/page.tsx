@@ -5,7 +5,7 @@ import { Suspense } from "react";
 const Loader = () => <div>Loading player...</div>;
 export default function Home() {
 	return (
-		<div className="">
+		<div className="px-20">
 			<Suspense fallback={<Loader />}>
 				<CustomPlayer
 					trackMetaData={{

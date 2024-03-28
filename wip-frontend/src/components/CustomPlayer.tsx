@@ -3,8 +3,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
-import { BsFillPauseFill, BsFillPlayFill } from "react-icons/bs";
+import {
+	BsFillPauseFill as Pause,
+	BsFillPlayFill as Play,
+} from "react-icons/bs";
 import { PlayerProps } from "@/definitions";
+import { BiLike as LikeIcon } from "react-icons/bi";
+import { BiSolidLike as LikeSolidIcon } from "react-icons/bi";
+import { RiShareForward2Fill as ShareIcon } from "react-icons/ri";
+import { MdOutlineLink as LinkIcon } from "react-icons/md";
+import { FaCommentAlt as CommentIcon } from "react-icons/fa";
+import { LuHeartHandshake as BidIcon } from "react-icons/lu";
+
+// [ ] some indication of what the poster is looking for
+// [ ] Days til removal
+// [ ] Add a genre tag
+// [ ] add a comment count indicator
 
 const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
@@ -74,7 +88,7 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	});
 
 	return (
-		<div className="flex h-fit items-center m-2 border rounded">
+		<div className="flex h-fit items-center m-2 rounded">
 			<Image
 				className="rounded flex-grow p-2"
 				src="/testImage.png"
@@ -85,26 +99,32 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 			<div className="w-full h-fit flex flex-col justify-between">
 				<div className="w-full flex justify-between items-end p-2">
 					<div>
-						<p className="font-bold text-2xl">{trackTitle}</p>
+						<p className="font-bold text-3xl">{trackTitle}</p>
 						<p className="text-lg">{artistName}</p>
 						<p className="italic">{date}</p>
 					</div>
 					<div className="flex gap-2 h-full">
-						<button className="border p-2 h-fit w-16 rounded">
+						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+							<LikeIcon size="1.2em" />
 							Like
 						</button>
-						<button className="border p-2 h-fit w-16 rounded">
+						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+							<BidIcon size="1.2em" />
 							Bid
+						</button>
+						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+							<LinkIcon size="1.2em" />
+							Copy Link
+						</button>
+						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+							<ShareIcon size="1.2em" />
+							Share
 						</button>
 					</div>
 				</div>
 				<div className="flex justify-center items-end p-2">
 					<button onClick={handlePlayPause} className="mr-2 my-auto">
-						{isPlaying ? (
-							<BsFillPauseFill size={80} />
-						) : (
-							<BsFillPlayFill size={80} />
-						)}
+						{isPlaying ? <Pause size={80} /> : <Play size={80} />}
 					</button>
 					<div className="relative w-full" ref={waveformRef}>
 						{duration > 0 && commentElements}
