@@ -67,16 +67,42 @@ const Player: React.FC<PlayerProps> = ({ url }) => {
 	return (
 		<>
 			<div className="flex justify-center items-center pt-16">
-				<p className="text-white my-2">Track Title</p>
-				<div className="waveform-container">
-					<button onClick={handlePlayPause} className="">
-						{isPlaying ? (
-							<BsFillPauseFill size={40} />
-						) : (
-							<BsFillPlayFill size={40} />
-						)}
-					</button>
-					<div ref={waveformRef} className="waveform-ref-style" />
+				<Image
+					className="rounded"
+					src="/testImage.png"
+					alt="cover"
+					width={200}
+					height={200}
+				/>
+				<div className="px-4 gap-4 flex h-[200px] flex-col w-full border-white justify-center">
+					<div className="flex justify-between">
+						<div className="flex flex-col">
+							<p className="font-bold text-2xl">Track Title</p>
+							<p className="text-lg">Artist Name</p>
+							<p className="italic">Date</p>
+						</div>
+						<div className="flex gap-2">
+							<button className="border p-2 h-fit w-16 rounded">
+								Like
+							</button>
+							<button className="border p-2 h-fit w-16 rounded">
+								Bid
+							</button>
+						</div>
+					</div>
+					<div className="flex items-center w-full">
+						<button onClick={handlePlayPause} className="">
+							{isPlaying ? (
+								<BsFillPauseFill size={60} />
+							) : (
+								<BsFillPlayFill size={60} />
+							)}
+						</button>
+						<div
+							ref={waveformRef}
+							className="flex-grow h-20 rounded"
+						/>
+					</div>
 				</div>
 			</div>
 		</>

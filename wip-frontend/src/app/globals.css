@@ -93,7 +93,7 @@ body {
 	}
 }
 
-.waveform-container {
+.waveform-and-playpause {
 	display: flex; /* Establish flex container */
 	align-items: center; /* Center items vertically */
 	width: 100%; /* Set the container to take full width of its parent */
