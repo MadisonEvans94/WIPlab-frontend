@@ -64,65 +64,53 @@ const Player: React.FC<PlayerProps> = ({ url, comments }) => {
 				key={comment.id}
 				src={comment.imageSrc}
 				alt="Comment"
-				className="cursor-pointer"
+				className="cursor-pointer absolute z-[1000] w-[30px] bottom-0 -translate-x-1/2"
 				style={{
-					position: "absolute",
-					zIndex: 1000,
 					left: `${commentPosition}%`,
-					bottom: "0",
-					width: "30px",
-					transform: "translateX(-50%)",
 				}}
 			/>
 		);
 	});
 
 	return (
-		<>
-			<div className="flex justify-center items-center pt-16">
-				<Image
-					className="rounded"
-					src="/testImage.png"
-					alt="cover"
-					width={300}
-					height={300}
-				/>
-				<div className="relative w-full" ref={waveformRef}>
-					{/* Overlay for comments */}
-					{duration > 0 && commentElements}
-					{/* The rest of your content */}
-
-					<div className="px-4 gap-4 flex h-[200px] flex-col w-full justify-center">
-						<div className="flex justify-between">
-							<div className="flex flex-col">
-								<p className="font-bold text-2xl">
-									Track Title
-								</p>
-								<p className="text-lg">Artist Name</p>
-								<p className="italic">Date</p>
-							</div>
-							<div className="flex gap-2">
-								<button className="border p-2 h-fit w-16 rounded">
-									Like
-								</button>
-								<button className="border p-2 h-fit w-16 rounded">
-									Bid
-								</button>
-							</div>
-						</div>
-						<div className="flex items-center w-full">
-							<button onClick={handlePlayPause} className="">
-								{isPlaying ? (
-									<BsFillPauseFill size={60} />
-								) : (
-									<BsFillPlayFill size={60} />
-								)}
-							</button>
-						</div>
+		<div className="flex h-fit items-center m-2 border rounded">
+			<Image
+				className="rounded flex-grow p-2"
+				src="/testImage.png"
+				alt="cover"
+				width={200}
+				height={200}
+			/>
+			<div className="w-full h-fit flex flex-col justify-between">
+				<div className="w-full flex justify-between items-end p-2">
+					<div>
+						<p className="font-bold text-2xl">Track Title</p>
+						<p className="text-lg">Artist Name</p>
+						<p className="italic">Date</p>
+					</div>
+					<div className="flex gap-2 h-full">
+						<button className="border p-2 h-fit w-16 rounded">
+							Like
+						</button>
+						<button className="border p-2 h-fit w-16 rounded">
+							Bid
+						</button>
+					</div>
+				</div>
+				<div className="flex justify-center items-end p-2">
+					<button onClick={handlePlayPause} className="mr-2 my-auto">
+						{isPlaying ? (
+							<BsFillPauseFill size={80} />
+						) : (
+							<BsFillPlayFill size={80} />
+						)}
+					</button>
+					<div className="relative w-full" ref={waveformRef}>
+						{duration > 0 && commentElements}
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
