@@ -64,6 +64,7 @@ const Player: React.FC<PlayerProps> = ({ url, comments }) => {
 				key={comment.id}
 				src={comment.imageSrc}
 				alt="Comment"
+				className="cursor-pointer"
 				style={{
 					position: "absolute",
 					zIndex: 1000,
@@ -79,17 +80,18 @@ const Player: React.FC<PlayerProps> = ({ url, comments }) => {
 	return (
 		<>
 			<div className="flex justify-center items-center pt-16">
-				<div className="relative" ref={waveformRef}>
+				<Image
+					className="rounded"
+					src="/testImage.png"
+					alt="cover"
+					width={300}
+					height={300}
+				/>
+				<div className="relative w-full" ref={waveformRef}>
 					{/* Overlay for comments */}
 					{duration > 0 && commentElements}
 					{/* The rest of your content */}
-					<Image
-						className="rounded"
-						src="/testImage.png"
-						alt="cover"
-						width={200}
-						height={200}
-					/>
+
 					<div className="px-4 gap-4 flex h-[200px] flex-col w-full justify-center">
 						<div className="flex justify-between">
 							<div className="flex flex-col">
