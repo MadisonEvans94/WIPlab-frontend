@@ -7,7 +7,22 @@ export default function Home() {
 	return (
 		<div className="">
 			<Suspense fallback={<Loader />}>
-				<CustomPlayer url="/testTrack.mp3" />
+				<CustomPlayer
+					url="/testTrack.mp3"
+					comments={[
+						{
+							id: "comment1",
+							time: 10,
+							imageSrc: "/testImage.png",
+						},
+						{
+							id: "comment2",
+							time: 30,
+							imageSrc: "/testImage.png",
+						},
+						// ...more comments
+					]}
+				/>
 			</Suspense>
 		</div>
 	);
