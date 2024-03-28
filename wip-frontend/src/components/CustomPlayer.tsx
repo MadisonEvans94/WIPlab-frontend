@@ -6,11 +6,12 @@ import Image from "next/image";
 import { BsFillPauseFill, BsFillPlayFill } from "react-icons/bs";
 import { PlayerProps } from "@/definitions";
 
-const Player: React.FC<PlayerProps> = ({ url, comments }) => {
+const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [duration, setDuration] = useState(0); // State to store the duration of the track
+	const [duration, setDuration] = useState(0);
+	const { trackTitle, artistName, date } = trackMetaData;
 
 	useEffect(() => {
 		if (waveformRef.current) {
@@ -84,9 +85,9 @@ const Player: React.FC<PlayerProps> = ({ url, comments }) => {
 			<div className="w-full h-fit flex flex-col justify-between">
 				<div className="w-full flex justify-between items-end p-2">
 					<div>
-						<p className="font-bold text-2xl">Track Title</p>
-						<p className="text-lg">Artist Name</p>
-						<p className="italic">Date</p>
+						<p className="font-bold text-2xl">{trackTitle}</p>
+						<p className="text-lg">{artistName}</p>
+						<p className="italic">{date}</p>
 					</div>
 					<div className="flex gap-2 h-full">
 						<button className="border p-2 h-fit w-16 rounded">

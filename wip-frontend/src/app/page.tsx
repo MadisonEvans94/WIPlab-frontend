@@ -8,6 +8,11 @@ export default function Home() {
 		<div className="">
 			<Suspense fallback={<Loader />}>
 				<CustomPlayer
+					trackMetaData={{
+						trackTitle: "Old Souls",
+						artistName: "Blue Cloud",
+						date: "3-27-2024",
+					}}
 					url="/testTrack.mp3"
 					comments={[
 						{

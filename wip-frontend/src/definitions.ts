@@ -5,6 +5,13 @@ export interface Comment {
 }
 
 export interface PlayerProps {
-	url: string; // URL of the audio file
-	comments: Comment[]; // Array of comments
+	url: string;
+	comments: Comment[];
+	trackMetaData: trackMetaData; // Track
 }
+
+type trackMetaData = {
+	trackTitle: string;
+	artistName: string;
+	date: string;
+};
