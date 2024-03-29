@@ -1,4 +1,4 @@
-import CustomPlayer from "@/components/CustomPlayer";
+import CustomPlayer from "@/components/Player";
 import { Suspense } from "react";
 
 // https://www.npmjs.com/package/react-player
