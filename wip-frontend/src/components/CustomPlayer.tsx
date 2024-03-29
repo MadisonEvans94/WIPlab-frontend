@@ -19,6 +19,7 @@ import { LuHeartHandshake as BidIcon } from "react-icons/lu";
 // [ ] Days til removal
 // [ ] Add a genre tag
 // [ ] add a comment count indicator
+// [ ] place holder handler functions
 
 const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
@@ -71,6 +72,18 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 			setIsPlaying(!isPlaying);
 		}
 	};
+	const handleLike = () => {
+		console.log("Liked");
+	};
+	const handleShare = () => {
+		console.log("shared");
+	};
+	const handleBid = () => {
+		console.log("bid");
+	};
+	const handleCopy = () => {
+		console.log("copied");
+	};
 
 	const commentElements = comments.map((comment) => {
 		const commentPosition = (comment.time / duration) * 100;
@@ -104,19 +117,31 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 						<p className="italic">{date}</p>
 					</div>
 					<div className="flex gap-2 h-full">
-						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+						<button
+							onClick={handleLike}
+							className="border p-2 h-fit hover:bg-white hover:text-black transition flex w-fit rounded items-center gap-2 justify-center"
+						>
 							<LikeIcon size="1.2em" />
 							Like
 						</button>
-						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+						<button
+							onClick={handleBid}
+							className="border p-2 h-fit hover:bg-white hover:text-black transition flex w-fit rounded items-center gap-2 justify-center"
+						>
 							<BidIcon size="1.2em" />
 							Bid
 						</button>
-						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+						<button
+							onClick={handleCopy}
+							className="border p-2 h-fit hover:bg-white hover:text-black transition flex w-fit rounded items-center gap-2 justify-center"
+						>
 							<LinkIcon size="1.2em" />
 							Copy Link
 						</button>
-						<button className="border p-2 h-fit flex w-fit rounded items-center gap-2 justify-center">
+						<button
+							onClick={handleShare}
+							className="border p-2 h-fit flex w-fit hover:bg-white hover:text-black transition rounded items-center gap-2 justify-center"
+						>
 							<ShareIcon size="1.2em" />
 							Share
 						</button>
