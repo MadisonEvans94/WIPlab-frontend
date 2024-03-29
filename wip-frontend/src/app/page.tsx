@@ -12,6 +12,7 @@ export default function Home() {
 						trackTitle: "Old Souls",
 						artistName: "Blue Cloud",
 						date: "3-27-2024",
+						genres: ["bounce", "house"],
 					}}
 					url="/testTrack.mp3"
 					comments={[
@@ -25,7 +26,6 @@ export default function Home() {
 							time: 30,
 							imageSrc: "/testImage.png",
 						},
-						// ...more comments
 					]}
 				/>
 			</Suspense>

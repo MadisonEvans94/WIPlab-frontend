@@ -14,4 +14,5 @@ type trackMetaData = {
 	trackTitle: string;
 	artistName: string;
 	date: string;
+	genres: string[];
 };

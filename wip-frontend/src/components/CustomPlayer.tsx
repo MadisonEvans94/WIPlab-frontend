@@ -18,7 +18,7 @@ import { LuHeartHandshake as BidIcon } from "react-icons/lu";
 // [ ] some indication of what the poster is looking for
 // [ ] Days til removal
 // [ ] Add a genre tag
-// [ ] add a comment count indicator
+// [x] add a comment count indicator
 // [x] place holder handler functions
 
 const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
@@ -26,7 +26,7 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [duration, setDuration] = useState(0);
-	const { trackTitle, artistName, date } = trackMetaData;
+	const { trackTitle, artistName, date, genres } = trackMetaData;
 
 	useEffect(() => {
 		if (waveformRef.current) {
@@ -84,6 +84,9 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const handleCopy = () => {
 		console.log("copied");
 	};
+	const handleFilterByGenre = () => {
+		console.log("filterByGenre");
+	};
 
 	const commentElements = comments.map((comment) => {
 		const commentPosition = (comment.time / duration) * 100;
@@ -116,7 +119,18 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 						<p className="text-lg">{artistName}</p>
 						<p className="italic">{date}</p>
 					</div>
-					<div className="flex gap-2 h-full">
+
+					<div className="flex items-center gap-2 h-full">
+						<div className="flex gap-2 mr-4">
+							{genres.map((genre) => (
+								<div
+									onClick={handleFilterByGenre}
+									className="cursor-pointer bg-gray-600 hover:bg-gray-400 transition text-white py-2 px-4 rounded-full"
+								>
+									#{genre}
+								</div>
+							))}
+						</div>
 						<button
 							onClick={handleLike}
 							className="border p-2 h-fit hover:bg-white hover:text-black transition flex w-fit rounded items-center gap-2 justify-center"
