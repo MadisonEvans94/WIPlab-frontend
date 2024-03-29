@@ -19,7 +19,7 @@ import { LuHeartHandshake as BidIcon } from "react-icons/lu";
 // [ ] Days til removal
 // [ ] Add a genre tag
 // [ ] add a comment count indicator
-// [ ] place holder handler functions
+// [x] place holder handler functions
 
 const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
@@ -106,8 +106,8 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 				className="rounded flex-grow p-2"
 				src="/testImage.png"
 				alt="cover"
-				width={200}
-				height={200}
+				width={240}
+				height={240}
 			/>
 			<div className="w-full h-fit flex flex-col justify-between">
 				<div className="w-full flex justify-between items-end p-2">
@@ -153,6 +153,16 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 					</button>
 					<div className="relative w-full" ref={waveformRef}>
 						{duration > 0 && commentElements}
+					</div>
+				</div>
+				<div className="w-full flex gap-4 justify-end p-2">
+					<div className="flex gap-2 items-center">
+						<CommentIcon size="1em" className="text-white" />
+						<p>{comments.length}</p>
+					</div>
+					<div className="flex gap-2 items-center">
+						<BidIcon size="1em" className="text-white" />
+						<p>5</p>
 					</div>
 				</div>
 			</div>
