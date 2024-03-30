@@ -5,14 +5,21 @@ export interface Comment {
 }
 
 export interface PlayerProps {
+	id: number;
 	url: string;
 	comments: Comment[];
-	trackMetaData: trackMetaData; // Track
+	trackMetaData: TrackMetaData;
+	isPlaying: boolean;
+	onPlay: (playerId: number) => void; // Pass the player ID to the onPlay function
 }
 
-type trackMetaData = {
+type TrackMetaData = {
 	trackTitle: string;
 	artistName: string;
 	date: string;
 	genres: string[];
 };
+
+export interface PlayerContainerProps {
+	playerData: { id: number; url: string }[];
+}

@@ -1,33 +1,33 @@
 "use client";
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
 import {
 	BsFillPauseFill as Pause,
 	BsFillPlayFill as Play,
 } from "react-icons/bs";
-import { PlayerProps } from "@/definitions";
+import { PlayerProps } from "@/definitions"; // Make sure this import path is correct
 import { BiLike as LikeIcon } from "react-icons/bi";
-import { BiSolidLike as LikeSolidIcon } from "react-icons/bi";
 import { RiShareForward2Fill as ShareIcon } from "react-icons/ri";
 import { MdOutlineLink as LinkIcon } from "react-icons/md";
 import { FaCommentAlt as CommentIcon } from "react-icons/fa";
 import { LuHeartHandshake as BidIcon } from "react-icons/lu";
 
-// [ ] some indication of what the poster is looking for
-// [ ] Days til removal
-// [ ] Add a genre tag
-// [x] add a comment count indicator
-// [x] place holder handler functions
-
-const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
+// Assuming PlayerProps is already defined with the necessary types including a unique identifier `id` and `isPlaying` boolean
+const Player: React.FC<PlayerProps> = ({
+	id,
+	url,
+	comments,
+	trackMetaData,
+	isPlaying,
+	onPlay,
+}) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
-	const [isPlaying, setIsPlaying] = useState(false);
 	const [duration, setDuration] = useState(0);
 	const { trackTitle, artistName, date, genres } = trackMetaData;
 
+	// Initialize WaveSurfer
 	useEffect(() => {
 		if (waveformRef.current) {
 			const wavesurferInstance = WaveSurfer.create({
@@ -54,24 +54,24 @@ const Player: React.FC<PlayerProps> = ({ url, comments, trackMetaData }) => {
 				console.error("WaveSurfer error:", error);
 			});
 
-			wavesurferInstance.on("play", () => {
-				setIsPlaying(true);
-			});
-
-			wavesurferInstance.on("pause", () => {
-				setIsPlaying(false);
-			});
-
 			return () => wavesurferInstance.destroy();
 		}
 	}, [url]);
 
-	const handlePlayPause = () => {
-		if (wavesurferRef.current) {
-			wavesurferRef.current.playPause();
-			setIsPlaying(!isPlaying);
+	// Play or Pause the player based on `isPlaying` prop
+	useEffect(() => {
+		if (isPlaying) {
+			wavesurferRef.current?.play();
+		} else {
+			wavesurferRef.current?.pause();
 		}
-	};
+	}, [isPlaying]);
+
+	// Callback for when play/pause button is clicked
+	const handlePlayPause = useCallback(() => {
+		onPlay(id);
+	}, [id, onPlay]);
+
 	const handleLike = () => {
 		console.log("Liked");
 	};
