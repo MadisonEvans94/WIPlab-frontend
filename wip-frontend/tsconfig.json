@@ -28,7 +28,11 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"jest.config.js"
+		"jest.config.ts",
+		"jest.config.jsf",
+		"jest.setup.js",
+		"jest.setup.js",
+		"jest.setup.js/ jest.setup.js import ResizeObserver from 'resize-observer-polyfill';  global.ResizeObserver = ResizeObserver;"
 	],
 	"exclude": ["node_modules"]
 }

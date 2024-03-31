@@ -1,4 +1,4 @@
-import PlayerContainer from "@/components/PlayerContainer";
+import PlayerContainer from "../components/PlayerContainer";
 
 import React from "react";
 import { Suspense } from "react";
