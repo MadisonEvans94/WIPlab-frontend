@@ -105,15 +105,18 @@ const Player: React.FC<PlayerProps> = ({
 	});
 
 	return (
-		<div className="flex h-fit items-center m-2 rounded">
+		<div className="flex h-[240px] items-center m-2 rounded">
 			<Image
-				className="rounded flex-grow p-2"
-				src={imgUrl}
+				// src={imgUrl}
+				src=""
 				alt="cover"
 				width={240}
 				height={240}
+				layout="fixed"
+				objectFit="cover"
 			/>
-			<div className="w-full h-fit flex flex-col justify-between">
+
+			<div className="w-full flex-grow h-fit flex flex-col justify-between">
 				<div className="w-full flex justify-between items-end p-2">
 					<div>
 						<p className="font-bold text-3xl">{trackTitle}</p>

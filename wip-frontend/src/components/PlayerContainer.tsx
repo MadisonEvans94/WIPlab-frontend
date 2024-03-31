@@ -34,7 +34,7 @@ const PlayerContainer: React.FC<PlayerContainerProps> = ({ playerData }) => {
 			{playerData.map((data) => (
 				<Player
 					id={data.id}
-					imgUrl=""
+					imgUrl={data.imgUrl}
 					// {data.imgUrl}
 					key={data.id}
 					url={data.url}
