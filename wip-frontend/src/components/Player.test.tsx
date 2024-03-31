@@ -1,12 +1,11 @@
 // Player.test.tsx
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import RandomComponent from "@/components/RandomComponent";
-
+import RandomComponent from "./RandomComponent";
 describe("Player Component", () => {
-	it("dummy test", () => {
-		const num = 6;
-		expect(num).toBe(6);
+	it("renders component to the DOM", () => {
+		render(<RandomComponent />);
+		expect(screen.getByText("RandomComponent")).toBeInTheDocument();
 	});
 
 	it("displays the correct track metadata", () => {
