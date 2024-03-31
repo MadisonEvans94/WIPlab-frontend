@@ -21,6 +21,7 @@ const Player: React.FC<PlayerProps> = ({
 	trackMetaData,
 	isPlaying,
 	onPlay,
+	imgUrl,
 }) => {
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
@@ -91,11 +92,11 @@ const Player: React.FC<PlayerProps> = ({
 	const commentElements = comments.map((comment) => {
 		const commentPosition = (comment.time / duration) * 100;
 		return (
-			<img
-				key={comment.id}
+			<Image
+				className="cursor-pointer absolute z-[1000] w-[30px] bottom-0 -translate-x-1/2"
 				src={comment.imageSrc}
 				alt="Comment"
-				className="cursor-pointer absolute z-[1000] w-[30px] bottom-0 -translate-x-1/2"
+				key={comment.id}
 				style={{
 					left: `${commentPosition}%`,
 				}}
@@ -107,7 +108,7 @@ const Player: React.FC<PlayerProps> = ({
 		<div className="flex h-fit items-center m-2 rounded">
 			<Image
 				className="rounded flex-grow p-2"
-				src="/testImage.png"
+				src={imgUrl}
 				alt="cover"
 				width={240}
 				height={240}

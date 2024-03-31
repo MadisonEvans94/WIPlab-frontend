@@ -8,9 +8,15 @@ const mockProps = {
 	id: 1,
 	url: "/testTrack.mp3",
 	comments: [
-		{ id: "comment1", time: 100, imageSrc: "path-to-image1.png" },
-		{ id: "comment2", time: 200, imageSrc: "path-to-image2.png" },
+		{ id: 346, time: 100, imageSrc: "path-to-image1.png", content: "dope" },
+		{
+			id: 2734,
+			time: 200,
+			imageSrc: "path-to-image2.png",
+			content: "cool",
+		},
 	],
+	imgUrl: "https://images.unsplash.com/photo-1708649290066-5f617003b93f?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 	trackMetaData: {
 		trackTitle: "Test Track",
 		artistName: "Test Artist",
