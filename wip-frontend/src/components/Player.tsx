@@ -122,8 +122,9 @@ const Player: React.FC<PlayerProps> = ({
 
 					<div className="flex items-center gap-2 h-full">
 						<div className="flex gap-2 mr-4">
-							{genres.map((genre) => (
+							{genres.map((genre, id) => (
 								<div
+									key={id}
 									onClick={handleFilterByGenre}
 									className="cursor-pointer bg-gray-600 hover:bg-gray-400 transition text-white py-2 px-4 rounded-full"
 								>
