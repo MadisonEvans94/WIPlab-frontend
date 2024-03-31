@@ -27,6 +27,8 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"@types/react-icons": "^3.0.0",
+		"@types/wavesurfer.js": "^6.0.12",
 		"autoprefixer": "^10.0.1",
 		"babel-jest": "^29.7.0",
 		"eslint": "^8",
