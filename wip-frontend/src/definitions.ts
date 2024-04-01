@@ -15,6 +15,22 @@ export interface PlayerProps {
 	onPlay: (playerId: number) => void; // Pass the player ID to the onPlay function
 }
 
+export interface PlayerContainerProps {
+	tracks: {
+		id: number;
+		url: string;
+		imgUrl: string;
+		comments: {
+			id: number;
+			time: number;
+			imageSrc: string;
+			content: string;
+		}[];
+		trackMetaData: TrackMetaData;
+		isPlaying: boolean;
+	}[];
+}
+
 export type TrackMetaData = {
 	trackTitle: string;
 	artistName: string;

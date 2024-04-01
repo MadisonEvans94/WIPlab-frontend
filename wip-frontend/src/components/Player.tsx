@@ -108,6 +108,7 @@ const Player: React.FC<PlayerProps> = ({
 		<div className="flex h-[240px] items-center m-2 rounded">
 			<Image
 				// src={imgUrl}
+				className="border rounded"
 				src=""
 				alt="cover"
 				width={240}
