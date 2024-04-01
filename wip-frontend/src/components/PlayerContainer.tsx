@@ -14,7 +14,7 @@ const PlayerContainer: React.FC<PlayerContainerProps> = ({ tracks }) => {
 	};
 
 	return (
-		<div className="flex flex-col gap-2 bg-blue-400">
+		<div className="flex flex-col gap-2">
 			{tracks.map((data) => (
 				<Player
 					id={data.id}
