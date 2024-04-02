@@ -7,32 +7,16 @@
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
 		"baseUrl": "./",
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
 		"paths": {
 			"@/*": ["./src/*"]
-			// "@/components/*": ["components/*"]
 		}
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"jest.config.ts",
-		"jest.config.jsf",
-		"jest.setup.js",
-		"jest.setup.js",
-		"jest.setup.js/ jest.setup.js import ResizeObserver from 'resize-observer-polyfill';  global.ResizeObserver = ResizeObserver;"
-	],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.setup.ts"],
 	"exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
 const RandomComponent = () => {
-	return <div>RandomComponent</div>;
+	return <div>Random</div>;
 };
 
 export default RandomComponent;
