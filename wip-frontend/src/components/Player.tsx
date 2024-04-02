@@ -34,11 +34,11 @@ const Player: React.FC<PlayerProps> = ({
 		if (waveformRef.current) {
 			const wavesurferInstance = WaveSurfer.create({
 				container: waveformRef.current,
-				waveColor: "violet",
-				progressColor: "purple",
+				waveColor: "#d4f2ff",
+				progressColor: "#00b3ff",
 				cursorColor: "transparent",
 				barWidth: 2,
-				barGap: 1,
+				barGap: 2,
 				height: 80,
 				normalize: true,
 				backend: "MediaElement",
@@ -57,7 +57,7 @@ const Player: React.FC<PlayerProps> = ({
 				const currentComment = comments.find((comment) => {
 					return (
 						currentTime >= comment.time &&
-						currentTime < comment.time + 1
+						currentTime < comment.time + 2
 					); // Adjust this range as needed
 				});
 				if (currentComment) {
