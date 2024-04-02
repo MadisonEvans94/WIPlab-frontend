@@ -104,20 +104,25 @@ const Player: React.FC<PlayerProps> = ({
 		);
 	});
 
-	return (
-		<div className="flex h-[240px] items-center m-2 rounded">
-			<Image
-				// src={imgUrl}
-				className="border rounded"
-				src=""
-				alt="cover"
-				width={240}
-				height={240}
-				layout="fixed"
-				objectFit="cover"
-			/>
+	// const imageLoader = ({ src, width, quality }) => {
+	// 	return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+	// };
 
-			<div className="w-full flex-grow h-fit flex flex-col justify-between">
+	return (
+		<div className="flex h-fit items-center m-2 rounded justify-center">
+			<div className="w-[250px] h-[250px] object-cover relative rounded overflow-hidden">
+				<Image
+					// loader={imageLoader}
+					src={imgUrl}
+					quality={80}
+					alt="cover"
+					blurDataURL="blur.jpg"
+					placeholder="blur"
+					fill={true}
+				/>
+			</div>
+
+			<div className="w-full max-w-[1200px] h-[250px] flex flex-col justify-between">
 				<div className="w-full flex justify-between items-end p-2">
 					<div>
 						<p className="font-bold text-3xl">{trackTitle}</p>
