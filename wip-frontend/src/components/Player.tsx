@@ -93,10 +93,13 @@ const Player: React.FC<PlayerProps> = ({
 		const commentPosition = (comment.time / duration) * 100;
 		return (
 			<Image
-				className="cursor-pointer absolute z-[1000] w-[30px] bottom-0 -translate-x-1/2"
+				className="cursor-pointer absolute z-[1000] w-[30px] h-[30px] object-cover bottom-0 -translate-x-1/2"
 				src={comment.imageSrc}
 				alt="Comment"
 				key={comment.id}
+				width={50}
+				height={50}
+				quality={20}
 				style={{
 					left: `${commentPosition}%`,
 				}}
