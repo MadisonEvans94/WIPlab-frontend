@@ -8,7 +8,7 @@ const SearchBar = () => {
 	}
 	return (
 		<div className="max-w-[400px] my-4 mx-auto flex gap-2 items-center justify-center">
-			<Input className="w-full" />
+			<Input className="w-full" placeholder="search here..." />
 			<SearchIcon
 				size="1.5em"
 				className="cursor-pointer"
