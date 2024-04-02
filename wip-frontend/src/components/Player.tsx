@@ -6,7 +6,7 @@ import {
 	BsFillPauseFill as Pause,
 	BsFillPlayFill as Play,
 } from "react-icons/bs";
-import { PlayerProps } from "@/definitions"; // Make sure this import path is correct
+import { Comment, PlayerProps } from "@/definitions"; // Make sure this import path is correct
 import { BiLike as LikeIcon } from "react-icons/bi";
 import { RiShareForward2Fill as ShareIcon } from "react-icons/ri";
 import { MdOutlineLink as LinkIcon } from "react-icons/md";
@@ -23,7 +23,7 @@ const Player: React.FC<PlayerProps> = ({
 	onPlay,
 	imgUrl,
 }) => {
-	const [activeComment, setActiveComment] = useState("");
+	const [activeComment, setActiveComment] = useState<Comment | null>(null);
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
 	const [duration, setDuration] = useState(0);
@@ -61,9 +61,9 @@ const Player: React.FC<PlayerProps> = ({
 					); // Adjust this range as needed
 				});
 				if (currentComment) {
-					setActiveComment(currentComment.content);
+					setActiveComment(currentComment);
 				} else {
-					setActiveComment(""); // Clear active comment when there's no match
+					setActiveComment(null);
 				}
 			});
 
@@ -108,18 +108,28 @@ const Player: React.FC<PlayerProps> = ({
 	const commentElements = comments.map((comment) => {
 		const commentPosition = (comment.time / duration) * 100;
 		return (
-			<Image
-				className="cursor-pointer absolute z-[1000] w-[30px] h-[30px] object-cover bottom-0"
-				src={comment.imageSrc}
-				alt="Comment"
-				key={comment.id}
-				width={50}
-				height={50}
-				quality={20}
-				style={{
-					left: `${commentPosition}%`,
-				}}
-			/>
+			<>
+				<Image
+					className="cursor-pointer absolute z-[1000] w-[30px] h-[30px] object-cover bottom-0"
+					src={comment.imageSrc}
+					alt="Comment"
+					key={comment.id}
+					width={50}
+					height={50}
+					quality={20}
+					style={{
+						left: `${commentPosition}%`,
+					}}
+				/>
+				{comment.id == activeComment?.id && (
+					<p
+						style={{ left: `${commentPosition}%` }}
+						className="absolute z-[2000] bg-white text-black p-1 rounded bottom-0"
+					>
+						{comment.content}
+					</p>
+				)}
+			</>
 		);
 	});
 
@@ -197,8 +207,9 @@ const Player: React.FC<PlayerProps> = ({
 					</button>
 					<div className="relative w-full" ref={waveformRef}>
 						{duration > 0 && commentElements}
-						<p>{activeComment}</p>{" "}
-						{/* Display the active comment here */}
+						{/* <p className="absolute z-[2000] bg-white text-black p-1 rounded translate-x-1/2">
+							{activeComment}
+						</p> */}
 					</div>
 				</div>
 				<div className="w-full flex gap-4 justify-end p-2">
