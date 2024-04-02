@@ -109,7 +109,7 @@ const Player: React.FC<PlayerProps> = ({
 	// };
 
 	return (
-		<div className="flex h-fit items-center m-2 rounded justify-center">
+		<div className="flex h-fit items-center m-2 rounded justify-center gap-4">
 			<div className="w-[250px] h-[250px] object-cover relative rounded overflow-hidden">
 				<Image
 					// loader={imageLoader}
@@ -122,8 +122,8 @@ const Player: React.FC<PlayerProps> = ({
 				/>
 			</div>
 
-			<div className="w-full max-w-[1200px] h-[250px] flex flex-col justify-between">
-				<div className="w-full flex justify-between items-end p-2">
+			<div className="w-full max-w-[1200px] h-[250px] flex flex-col justify-between items-between">
+				<div className="w-full flex justify-between items-between">
 					<div>
 						<p className="font-bold text-3xl">{trackTitle}</p>
 						<p className="text-lg">{artistName}</p>
