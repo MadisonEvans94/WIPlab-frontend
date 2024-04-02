@@ -23,6 +23,7 @@ const Player: React.FC<PlayerProps> = ({
 	onPlay,
 	imgUrl,
 }) => {
+	const [activeComment, setActiveComment] = useState("");
 	const waveformRef = useRef<HTMLDivElement | null>(null);
 	const wavesurferRef = useRef<WaveSurfer | null>(null);
 	const [duration, setDuration] = useState(0);
@@ -51,13 +52,28 @@ const Player: React.FC<PlayerProps> = ({
 				setDuration(wavesurferInstance.getDuration());
 			});
 
+			wavesurferInstance.on("audioprocess", () => {
+				const currentTime = wavesurferInstance.getCurrentTime();
+				const currentComment = comments.find((comment) => {
+					return (
+						currentTime >= comment.time &&
+						currentTime < comment.time + 1
+					); // Adjust this range as needed
+				});
+				if (currentComment) {
+					setActiveComment(currentComment.content);
+				} else {
+					setActiveComment(""); // Clear active comment when there's no match
+				}
+			});
+
 			wavesurferInstance.on("error", (error) => {
 				console.error("WaveSurfer error:", error);
 			});
 
 			return () => wavesurferInstance.destroy();
 		}
-	}, [url]);
+	}, [url, comments]); // Ensure comments is in the dependency array
 
 	// Play or Pause the player based on `isPlaying` prop
 	useEffect(() => {
@@ -93,7 +109,7 @@ const Player: React.FC<PlayerProps> = ({
 		const commentPosition = (comment.time / duration) * 100;
 		return (
 			<Image
-				className="cursor-pointer absolute z-[1000] w-[30px] h-[30px] object-cover bottom-0 -translate-x-1/2"
+				className="cursor-pointer absolute z-[1000] w-[30px] h-[30px] object-cover bottom-0"
 				src={comment.imageSrc}
 				alt="Comment"
 				key={comment.id}
@@ -181,6 +197,8 @@ const Player: React.FC<PlayerProps> = ({
 					</button>
 					<div className="relative w-full" ref={waveformRef}>
 						{duration > 0 && commentElements}
+						<p>{activeComment}</p>{" "}
+						{/* Display the active comment here */}
 					</div>
 				</div>
 				<div className="w-full flex gap-4 justify-end p-2">
